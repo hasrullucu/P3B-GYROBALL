@@ -1,1 +1,35 @@
-tes
+-------------------------HOW TO CREATE FRAGMENT
+ * siapin fragment container di main activity
+ * bikin fragment baru jangan ceklist interface call backs
+ *
+ * bikin layout buat fragment
+ *
+ * atur oncreate view ( bikin view res , ambil id view , return)
+ *
+ * bikin static newInstance (new Fragment objek , ambil activity)
+ *
+ * di main activity (bikin objek fragment , bikin fragment manager)
+ *
+ * bikin fragment transaction (hati hati package)
+ * replace
+ * commit
+ *
+ * --------------------------HOW TO CREATE LISTVIEW
+ * isi tipe listView di layout utama
+ * create listview di activity nya / fragment nya
+ *
+ * bikin layout per item beserta elemen
+ *
+ * bikin kelas Adapter extends BaseAdapter
+ * 
+ * implements semua method
+ * bikin data struktur simpen data
+ *buat constructor(activity , new datastructure)
+ * ganti getsize ( data.getsize)
+ * ganti get item (data.get(i))
+ * ganti getview (layout inflater , ambil id element per item , dan set data)
+ *
+ * bikin method add item di adapter (add ke data , notify data setchanged)
+ *
+ * di activity / fragment bikin adapter
+ * listview setadapter(adapter)
