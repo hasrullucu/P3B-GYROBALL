@@ -1,4 +1,4 @@
-package com.example.i16067.akseleroball;
+package com.example.i16067.game;
 
 
 import android.support.v4.app.FragmentManager;

@@ -1,4 +1,4 @@
-package com.example.i16067.akseleroball;
+package com.example.i16067.game;
 
 public class Player {
     protected String name ;

@@ -1,4 +1,4 @@
-package com.example.i16067.akseleroball;
+package com.example.i16067.game;
 
 import android.view.LayoutInflater;
 import android.view.View;

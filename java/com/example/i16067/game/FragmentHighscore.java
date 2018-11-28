@@ -1,4 +1,4 @@
-package com.example.i16067.akseleroball;
+package com.example.i16067.game;
 
 
 import android.os.Bundle;
@@ -19,14 +19,9 @@ public class FragmentHighscore extends Fragment implements View.OnClickListener{
     protected TextView tv_Highscore;
     protected ListView lst_Highscore ;
     protected Button btn_Back;
-
 //    tes add button buat add ke listview
     protected Button btn_Add;
-
     protected AdapterHighscore adapterHighscore;
-
-
-
     protected MainActivity activity;
 
 
