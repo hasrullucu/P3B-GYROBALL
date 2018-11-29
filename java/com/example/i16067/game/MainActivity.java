@@ -50,10 +50,16 @@ import android.os.Bundle;
  */
 
 public class MainActivity extends AppCompatActivity {
+    // Fragment untuk home page
     protected FragmentHome fragmentHome;
+
+    // Fragment saat bermain bola
     protected FragmentGame fragmentGame;
+
+    // Fragment untuk highscore
     protected FragmentHighscore fragmentHighscore;
 
+    //Fragment manager buat atur perpindahan fragment
     protected FragmentManager fragmentManager;
 
     @Override
@@ -70,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
         this.fragmentManager = this.getSupportFragmentManager();
 
+        // inisialisasi awal tampilkan fragment home
         FragmentTransaction transaction = this.fragmentManager.beginTransaction();
         transaction.replace(R.id.fragContainer , fragmentHome);
         transaction.commit();
@@ -77,18 +84,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Method wrapper untuk pindah ke fragment Game
+     */
     public void switchToGame(){
         FragmentTransaction transaction = this.fragmentManager.beginTransaction();
         transaction.replace(R.id.fragContainer , fragmentGame);
         transaction.commit();
     }
 
+    /**
+     * Method wrapper untuk pindah ke fragment Home
+     */
     public void switchToHome(){
         FragmentTransaction transaction = this.fragmentManager.beginTransaction();
         transaction.replace(R.id.fragContainer , fragmentHome);
         transaction.commit();
     }
 
+    /**
+     * Method wrapper untuk pindah ke fragment Highscore
+     */
     public void switchToHighscore(){
         FragmentTransaction transaction = this.fragmentManager.beginTransaction();
         transaction.replace(R.id.fragContainer , fragmentHighscore);

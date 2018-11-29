@@ -21,12 +21,18 @@ public class SensorReader implements SensorEventListener{
     }
 
 
-
+    /**
+     * Method untuk memulai register listener untuk
+     * sensor
+     */
     public void start(){
         this.sensorManager.registerListener( this,this.accelerometer,SensorManager.SENSOR_DELAY_FASTEST);
         this.sensorManager.registerListener(this,this.magnetometer,SensorManager.SENSOR_DELAY_FASTEST);
     }
 
+    /**
+     * Method untuk menghentikan
+     */
     public void stop(){
         this.sensorManager.unregisterListener( this,this.accelerometer);
         this.sensorManager.unregisterListener(this,this.magnetometer);

@@ -65,6 +65,8 @@ public class FragmentHighscore extends Fragment implements View.OnClickListener{
         if(view == this.btn_Back){
             this.activity.switchToHome();
         }else if(view == this.btn_Add){
+            // button tes untuk coba memasukan data ke listview
+            // HAPUS JIKA SUDAH BISA !
             Log.d("d" , "mantap");
             this.adapterHighscore.addPlayer("basrul" , 10);
         }
