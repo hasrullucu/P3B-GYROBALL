@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 
@@ -29,13 +30,15 @@ public class FragmentGame extends Fragment implements View.OnClickListener{
     protected Bitmap bitmap;
     protected Canvas canvas;
     protected Paint p;
-    protected Button btn;
+    protected Button btn ,add;
     protected boolean isPlay;
-    protected Bola bola;
+//    protected Bola bola;
     protected BolaHitam bolaHitam;
     protected float x,speedX;
     protected float y,speedY;
 
+
+    protected ArrayList<Bola> arrBola;
 
     public FragmentGame() {
         // Required empty public constructor
@@ -89,46 +92,14 @@ public class FragmentGame extends Fragment implements View.OnClickListener{
         }
         float x=0;
         float y=0;
-//        if(randomBola==1 || randomBolaHitam==1){
-//            x=50+rand.nextInt(this.imageView.getWidth()/2);
-//            y=50+rand.nextInt(this.imageView.getHeight()/2);
-//        }
-//        else if(randomBola==2 || randomBolaHitam==2){
-//            x=this.imageView.getWidth()/2+rand.nextInt(this.imageView.getWidth()/2-100);
-//            y=this.imageView.getHeight()/2+rand.nextInt(this.imageView.getHeight()/2-100);
-//        }
-//        else if(randomBola==3 || randomBolaHitam==3){
-//            x=50+rand.nextInt(this.imageView.getWidth()/2);
-//            y=this.imageView.getHeight()/2-100+rand.nextInt(this.imageView.getHeight()/2);
-//        }
-//        else if(randomBola==4 || randomBolaHitam==4){
-//            x=this.imageView.getWidth()/2-100+rand.nextInt(this.imageView.getWidth()/2);
-//            y=this.imageView.getHeight()/2-100+rand.nextInt(this.imageView.getHeight()/2);
-//        }
-//        //koor x bola hitam
-//        x=this.imageView.getWidth()/2+rand.nextInt(this.imageView.getWidth()/2-150);
-//        if(x-this.bola.getX()<50){
-//            while(x-this.bola.getX()<50){
-//                x=this.imageView.getWidth()/2+rand.nextInt(this.imageView.getWidth()/2-150);
-//                Log.d("test","koor x : "+x+"\n");
-//            }
-//        }
-//
-//
-//        //koor y bola hitam
-//        y=this.imageView.getHeight()/2+rand.nextInt(this.imageView.getHeight()/2-150);
-//        if(y-this.bola.getY()<50){
-//            while(y-this.bola.getY()<50){
-//                y=this.imageView.getHeight()/2+rand.nextInt(this.imageView.getHeight()/2-150);
-//                Log.d("test","koor y : "+y+"\n");
-//            }
-//        }
 
-        this.bola=new Bola(this.generateX(rand,randomBola,50),this.generateY(rand,randomBola,50),50);
+
+        Bola bola=new Bola(this.generateX(rand,randomBola,50),this.generateY(rand,randomBola,50),50);
+        this.arrBola.add(bola);
 
         this.bolaHitam=new BolaHitam(this.generateX(rand,randomBolaHitam,100),this.generateY(rand,randomBolaHitam,100),100);
 
-        this.canvas.drawCircle(this.bola.getX(),this.bola.getY(),this.bola.getR(),this.p);
+//        this.canvas.drawCircle(this.bola.getX(),this.bola.getY(),this.bola.getR(),this.p);
         Paint paint=new Paint();
         paint.setColor(Color.BLACK);
         this.canvas.drawCircle(this.bolaHitam.getX(),this.bolaHitam.getY(),this.bolaHitam.getR(),paint);
@@ -171,8 +142,10 @@ public class FragmentGame extends Fragment implements View.OnClickListener{
         this.tvAccZ =res.findViewById(R.id.tvAccZ);
 
         this.btn=res.findViewById(R.id.btn);
+        this.add = res.findViewById(R.id.add);
         this.imageView=res.findViewById(R.id.image_view);
         this.btn.setOnClickListener(this);
+        this.add.setOnClickListener(this);
 
 
         return res;
@@ -181,46 +154,66 @@ public class FragmentGame extends Fragment implements View.OnClickListener{
 
     public void redraw(float [] values){
         if(this.isPlay) {
-            Paint paint = new Paint();
-            paint.setColor(Color.WHITE);
-            this.canvas.drawCircle(this.bola.getX(), this.bola.getY(), this.bola.getR(), paint);
+            for(int i=0;i<this.arrBola.size();i++) {
+                Paint paint = new Paint();
+                paint.setColor(Color.WHITE);
+                Bola bola=this.arrBola.get(i);
+                this.canvas.drawCircle(bola.getX(), bola.getY(), bola.getR(), paint);
 
-            if(bola.getX()-bola.getR()>0 && bola.getX()+bola.getR()<this.imageView.getWidth() && bola.getY()-bola.getR()>0 && bola.getY()+bola.getR()<this.imageView.getHeight()){
-                speedX= (values[0]/9.8f*7)*-1;
-                speedY= values[1]/9.8f*7;
-            }else{
-                if(bola.getX()-bola.getR()<0){
-                    this.bola.setX(x+25);
-                }else if(bola.getX()+bola.getR()>this.imageView.getWidth()){
-                    this.bola.setX(x-25);
-                }else if(bola.getY()-bola.getR()<0){
-                    this.bola.setY(y+25);
-                }else if(bola.getY()+bola.getR()>this.imageView.getHeight()){
-                    this.bola.setY(y-25);
+                if (bola.getX() - bola.getR() > 0 && bola.getX() + bola.getR() < this.imageView.getWidth() && bola.getY() - bola.getR() > 0 && bola.getY() + bola.getR() < this.imageView.getHeight()) {
+                    //kalau ga nabrak
+                    Log.d("cek",bola.getX()+" "+bola.getY()+" ga nabrak");
+                    speedX = (values[0] / 20f)*-1;
+                    speedY = (values[1] / 20.8f);
+                    bola.setKecepatanX(bola.getKecepatanX()+speedX);
+                    bola.setKecepatanY(bola.getKecepatanY()+speedY);
+                } else {
+                    Log.d("cek",bola.getX()+" "+bola.getY()+" nabrak");
+                    if (bola.getX() - bola.getR() < 0) {
+                        bola.setX(75);
+                        //bola.setKecepatanX(0);
+                        bola.setKecepatanX(bola.getKecepatanX()*-0.5f);
+                    } else if (bola.getX() + bola.getR() > this.imageView.getWidth()) {
+                        bola.setX(this.imageView.getWidth()-75);
+                        bola.setKecepatanX(bola.getKecepatanX()*-0.5f);
+                    } else if (bola.getY() - bola.getR() < 0) {
+                        bola.setY(75);
+                        bola.setKecepatanY(bola.getKecepatanY()*-0.5f);
+                        //bola.setKecepatanY(0);
+                    } else if (bola.getY() + bola.getR() > this.imageView.getHeight()) {
+                        bola.setY(this.imageView.getHeight()-75);
+                        bola.setKecepatanY(bola.getKecepatanY()*-0.5f);
+                        //bola.setKecepatanY(0);
+                    }
+                }
+
+                x = bola.getX() + (bola.getKecepatanX()/bola.getBerat()*1.0f);
+                y = bola.getY() + (bola.getKecepatanY()/bola.getBerat()*1.0f);
+
+                bola.setX(x);
+                bola.setY(y);
+
+
+                Paint paint1 = new Paint();
+                paint1.setColor(Color.BLACK);
+                //this.canvas.drawColor(Color.WHITE);
+                this.canvas.drawCircle(bola.getX(), bola.getY(), bola.getR(), paint);
+                if (Math.abs(this.bolaHitam.getX() - bola.getX()) < 50 && Math.abs(this.bolaHitam.getY() - bola.getY()) < 50) {
+                    //System.exit(0);
+                    //stop game dan waktu
+                    //hitung score
+                    //pindah fragment
+
+                    Log.d("test", "NABRAK");
+                } else {
+                    this.canvas.drawCircle(this.bolaHitam.getX(), this.bolaHitam.getY(), this.bolaHitam.getR(), paint1);
+
+                    this.canvas.drawCircle(bola.getX(), bola.getY(), bola.getR(), this.p);
+                    this.imageView.invalidate();
                 }
             }
 
-            x=bola.getX()+speedX;
-            y=bola.getY()+speedY;
 
-            this.bola.setX(x);
-            this.bola.setY(y);
-
-
-            Paint paint1=new Paint();
-            paint.setColor(Color.BLACK);
-
-            if(Math.abs(this.bolaHitam.getX()-this.bola.getX())<50 && Math.abs(this.bolaHitam.getY()-this.bola.getY())<50){
-                System.exit(0);
-
-
-                Log.d("test","NABRAK");
-            }else {
-                this.canvas.drawCircle(this.bolaHitam.getX(), this.bolaHitam.getY(), this.bolaHitam.getR(), paint1);
-
-                this.canvas.drawCircle(this.bola.getX(), this.bola.getY(), this.bola.getR(), this.p);
-                this.imageView.invalidate();
-            }
 
 
         }
@@ -230,9 +223,15 @@ public class FragmentGame extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         if(view==this.btn){
             //this.bola=new Bola(50,50,50);
+            this.arrBola=new ArrayList<>();
             this.create();
             this.isPlay=true;
             // this.arrayList=new ArrayList<>();
+        }else if(view==this.add){
+            Random rand=new Random();
+            int randomBola= rand.nextInt(4)+1;
+            Bola bola=new Bola(this.generateX(rand,randomBola,50),this.generateY(rand,randomBola,50),50);
+            this.arrBola.add(bola);
         }
     }
 }

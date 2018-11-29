@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     tools:context=".FragmentHome">
 
@@ -10,13 +11,23 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="GYRO BALL" />
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:textSize="40"
+        android:text="AKSELERO-BALL"
+        android:textStyle="italic"
+        android:textColor="@color/colorPrimary"
+        android:shadowColor="@color/colorPrimary"
+
+        />
 
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_Start"
+        android:textStyle="bold"
         android:text="START"
         />
     <Button
