@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".FragmentHome">
+    tools:context=".Views.FragmentHome">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -14,8 +14,8 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:fontFamily="monospace"
-        android:textSize="40"
-        android:text="AKSELERO-BALL"
+        android:textSize="@dimen/text_size"
+        android:text="@string/game"
         android:textStyle="italic"
         android:textColor="@color/colorPrimary"
         android:shadowColor="@color/colorPrimary"
@@ -28,20 +28,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_Start"
         android:textStyle="bold"
-        android:text="START"
+        android:text="@string/btn_start"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_HighScore"
-        android:text="HIGHSCORE"
+        android:text="@string/btn_highscore"
         />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_Exit"
-        android:text="EXIT"
+        android:text="@string/btn_exit"
         />
 
 

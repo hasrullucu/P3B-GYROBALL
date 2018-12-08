@@ -3,4 +3,11 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_start">START</string>
+    <string name="btn_add">Tambah Bola</string>
+    <string name="highscore">HIGHSCORE : </string>
+    <string name="btn_highscore">HIGHSCORE</string>
+    <string name="btn_exit">EXIT</string>
+    <string name="btn_back">BACK</string>
+    <string name="game">AKSELERO-BALL</string>
 </resources>

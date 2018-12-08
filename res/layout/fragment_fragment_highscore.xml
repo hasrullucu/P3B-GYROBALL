@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:weightSum="10"
     android:orientation="vertical"
-    tools:context=".FragmentHighscore">
+    tools:context=".Views.FragmentHighscore">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -18,13 +18,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="HIGHSCORE : "
+            android:text="@string/highscore"
             />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1000000"
+            android:text="0"
             android:id="@+id/tv_Highscore"
             />
 
@@ -32,7 +32,7 @@
 
     <ListView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/layout_height"
         android:layout_weight="6"
         android:id="@+id/lst_Highscore"
         >
@@ -42,24 +42,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/layout_height"
         android:layout_weight="2"
         >
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_Back"
-            android:text="BACK"
+            android:text="@string/btn_back"
             />
-
+        <!--yang ini ga masuk-->
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/btn_Add"
             android:text="mantap"
             />
-
-
     </LinearLayout>
 
 </LinearLayout>
